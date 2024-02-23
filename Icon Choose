@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objek Bergerak dengan Kursor Mouse atau Touch</title>
+<style>
+    #objek {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        position: absolute;
+        border-radius: 50%;
+    }
+</style>
+</head>
+<body>
+<div id="objek"></div>
+
+<script>
+    // Mendapatkan elemen objek
+    var objek = document.getElementById('objek');
+
+    // Mendeteksi pergerakan mouse
+    document.addEventListener('mousemove', function(e) {
+        // Mengatur posisi objek sesuai dengan posisi mouse
+        objek.style.left = (e.pageX - (objek.offsetWidth / 2)) + 'px';
+        objek.style.top = (e.pageY - (objek.offsetHeight / 2)) + 'px';
+    });
+
+    // Mendeteksi sentuhan (touch)
+    document.addEventListener('touchmove', function(e) {
+        // Mendapatkan posisi sentuhan
+        var touch = e.touches[0];
+        
+        // Mengatur posisi objek sesuai dengan posisi sentuhan
+        objek.style.left = (touch.pageX - (objek.offsetWidth / 2)) + 'px';
+        objek.style.top = (touch.pageY - (objek.offsetHeight / 2)) + 'px';
+
+        // Mencegah aksi default sentuhan (scrolling, zooming, dll.)
+        e.preventDefault();
+    });
+</script>
+</body>
+</html>
